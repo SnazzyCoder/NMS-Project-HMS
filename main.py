@@ -285,8 +285,8 @@ def mainWindow():
     main.geometry("840x400+300+200")
     main.grid_propagate(False)
     main.resizable(0,0)
-    main.iconbitmap("icon.ico")
-    
+
+
     # For testing purposes only. Remove in final build to reduce unauthorized access
     """ try: user
     except NameError: user='admin' """
