@@ -3,11 +3,15 @@ import mysql.connector
 # ===================SQL Connectivity=================
 
 # SQL Connection
-connection=mysql.connector.connect(host="remotemysql.com", 
-                            user="vBSRv3edd7", 
-                            password="Oz11kf3svD", 
-                            database = "vBSRv3edd7", 
-                            port="3306", autocommit=True)
+try: 
+    connection=mysql.connector.connect(host="remotemysql.com", 
+                                user="vBSRv3edd7", 
+                                password="WybOhrwfxF", 
+                                database = "vBSRv3edd7", 
+                                port="3306", autocommit=True)
+except mysql.connector.errors.ProgrammingError:
+    print("!!!! Database Authentication Failed, update credentails in sqlconnect.py\n     or see references/db.txt for pass")
+    quit()
 
 """connection=mysql.connector.connect(user="root", 
                             password="mohit123", 
@@ -21,10 +25,8 @@ cursor=connection.cursor()
 def checkUser(username, password=None):
     cmd="Select count(username) from login where username='"+username.lower()+(("' and BINARY password='"+password) if password is not None else "")+"';"
     cursor.execute(cmd)
-    print(cmd)
     cmd=None
     a=cursor.fetchone()[0]>=1
-    print(a)
     return a 
 
 def addUser(username, password, sec_que, sec_ans):
